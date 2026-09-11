@@ -25,7 +25,7 @@ export const Route = createFileRoute("/file-complaint")({
       },
     ],
   }),
-  component: FileComplaintPage;
+  component: FileComplaintPage,
 });
 
 interface FormState {
