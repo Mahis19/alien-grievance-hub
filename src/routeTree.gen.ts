@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ComplaintsRouteImport } from './routes/complaints'
+import { Route as FileComplaintRouteImport } from './routes/file-complaint'
+import { Route as StatsRouteImport } from './routes/stats'
+import { Route as TrackRouteImport } from './routes/track'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +25,58 @@ const ComplaintsRoute = ComplaintsRouteImport.update({
   path: '/complaints',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FileComplaintRoute = FileComplaintRouteImport.update({
+  id: '/file-complaint',
+  path: '/file-complaint',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StatsRoute = StatsRouteImport.update({
+  id: '/stats',
+  path: '/stats',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrackRoute = TrackRouteImport.update({
+  id: '/track',
+  path: '/track',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/complaints': typeof ComplaintsRoute
+  '/file-complaint': typeof FileComplaintRoute
+  '/stats': typeof StatsRoute
+  '/track': typeof TrackRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/complaints': typeof ComplaintsRoute
+  '/file-complaint': typeof FileComplaintRoute
+  '/stats': typeof StatsRoute
+  '/track': typeof TrackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/complaints': typeof ComplaintsRoute
+  '/file-complaint': typeof FileComplaintRoute
+  '/stats': typeof StatsRoute
+  '/track': typeof TrackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/complaints'
+  fullPaths: '/' | '/complaints' | '/file-complaint' | '/stats' | '/track'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/complaints'
-  id: '__root__' | '/' | '/complaints'
+  to: '/' | '/complaints' | '/file-complaint' | '/stats' | '/track'
+  id: '__root__' | '/' | '/complaints' | '/file-complaint' | '/stats' | '/track'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ComplaintsRoute: typeof ComplaintsRoute
+  FileComplaintRoute: typeof FileComplaintRoute
+  StatsRoute: typeof StatsRoute
+  TrackRoute: typeof TrackRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +95,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComplaintsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/file-complaint': {
+      id: '/file-complaint'
+      path: '/file-complaint'
+      fullPath: '/file-complaint'
+      preLoaderRoute: typeof FileComplaintRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stats': {
+      id: '/stats'
+      path: '/stats'
+      fullPath: '/stats'
+      preLoaderRoute: typeof StatsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/track': {
+      id: '/track'
+      path: '/track'
+      fullPath: '/track'
+      preLoaderRoute: typeof TrackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ComplaintsRoute: ComplaintsRoute,
+  FileComplaintRoute: FileComplaintRoute,
+  StatsRoute: StatsRoute,
+  TrackRoute: TrackRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
