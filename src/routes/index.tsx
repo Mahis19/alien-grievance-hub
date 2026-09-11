@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { AlienScene } from "@/components/AlienScene";
+import { RadarScanner } from "@/components/RadarScanner";
 import { SystemStatus } from "@/components/SystemStatus";
 import { ComplaintCard } from "@/components/ComplaintCard";
 import { useComplaints } from "@/hooks/useComplaints";
@@ -141,7 +142,10 @@ function Index() {
           </p>
         </div>
 
-        <SystemStatus />
+        <div className="grid gap-6">
+          <RadarScanner />
+          <SystemStatus />
+        </div>
       </section>
 
       {/* Recent filings */}

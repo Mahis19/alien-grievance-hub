@@ -227,6 +227,31 @@
   animation: acp-float 5s ease-in-out infinite;
 }
 
+@keyframes acp-radar-sweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes acp-blip {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  10%,
+  55% {
+    opacity: 1;
+  }
+}
+
+@utility animate-radar-sweep {
+  animation: acp-radar-sweep 4s linear infinite;
+}
+
+@utility animate-blip {
+  animation: acp-blip 4s ease-out infinite;
+}
+
 @utility animate-twinkle {
   animation: acp-twinkle 4s ease-in-out infinite;
 }

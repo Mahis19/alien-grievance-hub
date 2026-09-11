@@ -85,7 +85,7 @@ function StatsPage() {
     const map: Record<string, number> = {};
     CHART_CATEGORIES.forEach((c) => (map[c] = 0));
     complaints.forEach((c) => {
-      if (c.category in map) map[c.category] += 1;
+      map[c.category] = (map[c.category] ?? 0) + 1;
     });
     // seed the chart with baseline archive volume so it never looks empty
     const baseline: Record<string, number> = {
@@ -98,7 +98,7 @@ function StatsPage() {
     };
     return CHART_CATEGORIES.map((c) => ({
       category: c,
-      count: baseline[c] + map[c] * 3,
+      count: (baseline[c] ?? 0) + (map[c] ?? 0) * 3,
     }));
   }, [complaints]);
 
@@ -107,7 +107,7 @@ function StatsPage() {
   const statusCounts = useMemo(() => {
     const map: Record<string, number> = {};
     STATUSES.forEach((s) => (map[s] = 0));
-    complaints.forEach((c) => (map[c.status] += 1));
+    complaints.forEach((c) => (map[c.status] = (map[c.status] ?? 0) + 1));
     return map;
   }, [complaints]);
 
