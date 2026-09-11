@@ -142,7 +142,10 @@ function Index() {
           </p>
         </div>
 
-        <SystemStatus />
+        <div className="grid gap-6">
+          <RadarScanner />
+          <SystemStatus />
+        </div>
       </section>
 
       {/* Recent filings */}
