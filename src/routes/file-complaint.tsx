@@ -79,13 +79,13 @@ function FileComplaintPage() {
 
   function validate() {
     const next: Record<string, string> = {};
-    if (!form.alienName.trim()) next.alienName = "An alien designation is required.";
-    if (!form.planet) next.planet = "Select your planet of origin.";
-    if (!form.category) next.category = "Select a grievance category.";
-    if (!form.title.trim()) next.title = "A complaint title is required.";
+    if (!form.alienName.trim()) next["alienName"] = "An alien designation is required.";
+    if (!form.planet) next["planet"] = "Select your planet of origin.";
+    if (!form.category) next["category"] = "Select a grievance category.";
+    if (!form.title.trim()) next["title"] = "A complaint title is required.";
     if (form.description.trim().length < 10)
-      next.description = "Describe the incident in at least 10 Earth characters.";
-    if (!confirmed) next.confirmed = "You must confirm your extraterrestrial status.";
+      next["description"] = "Describe the incident in at least 10 Earth characters.";
+    if (!confirmed) next["confirmed"] = "You must confirm your extraterrestrial status.";
     setErrors(next);
     return Object.keys(next).length === 0;
   }
@@ -174,7 +174,7 @@ function FileComplaintPage() {
 
       <form onSubmit={onSubmit} noValidate className="panel mt-8 space-y-6 p-6">
         <div className="grid gap-6 sm:grid-cols-2">
-          <Field label="Alien Name" error={errors.alienName}>
+          <Field label="Alien Name" error={errors["alienName"]}>
             <input
               className={fieldClass}
               placeholder="Zorp McZorp"
@@ -183,7 +183,7 @@ function FileComplaintPage() {
             />
           </Field>
 
-          <Field label="Planet" error={errors.planet}>
+          <Field label="Planet" error={errors["planet"]}>
             <select
               className={fieldClass}
               value={form.planet}
@@ -207,7 +207,7 @@ function FileComplaintPage() {
             />
           </Field>
 
-          <Field label="Complaint Category" error={errors.category}>
+          <Field label="Complaint Category" error={errors["category"]}>
             <select
               className={fieldClass}
               value={form.category}
@@ -223,7 +223,7 @@ function FileComplaintPage() {
           </Field>
         </div>
 
-        <Field label="Complaint Title" error={errors.title}>
+        <Field label="Complaint Title" error={errors["title"]}>
           <input
             className={fieldClass}
             placeholder="Earth WiFi is slower than intergalactic travel."
@@ -232,7 +232,7 @@ function FileComplaintPage() {
           />
         </Field>
 
-        <Field label="Complaint Description" error={errors.description}>
+        <Field label="Complaint Description" error={errors["description"]}>
           <textarea
             rows={5}
             className={`${fieldClass} resize-y`}
@@ -308,8 +308,8 @@ function FileComplaintPage() {
             unnecessarily important.
           </span>
         </label>
-        {errors.confirmed && (
-          <p className="text-sm text-destructive">{errors.confirmed}</p>
+        {errors["confirmed"] && (
+          <p className="text-sm text-destructive">{errors["confirmed"]}</p>
         )}
 
         <button
@@ -330,8 +330,8 @@ function Field({
   children,
 }: {
   label: string;
-  error?: string;
-  hint?: string;
+  error?: string | undefined;
+  hint?: string | undefined;
   children: React.ReactNode;
 }) {
   return (

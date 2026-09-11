@@ -32,7 +32,7 @@ export function ComplaintCard({ complaint: c }: { complaint: Complaint }) {
         </div>
         <span
           className={`shrink-0 rounded-md border px-2 py-1 font-mono text-[0.6rem] tracking-widest uppercase ${
-            PRIORITY_CLASS[c.priority] ?? PRIORITY_CLASS.LOW
+            PRIORITY_CLASS[c.priority] ?? "text-muted-foreground border-border"
           }`}
         >
           {c.priority}
